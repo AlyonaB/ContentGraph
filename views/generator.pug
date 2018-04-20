@@ -1,14 +1,15 @@
 extends layout
 
-block content
-    form(action='/generator', method='POST')
-        div
+body
+    block content
+        form(action='/generator', method='POST')
+            div
+                input(
+                    type='text',
+                    name='url'
+                )
             input(
-                type='text',
-                name='url'
+                class='ui-button ui-widget ui-corner-all',
+                type='submit',
+                value='Generate'
             )
-        input(
-            class='ui-button ui-widget ui-corner-all',
-            type='submit',
-            value='Generate'
-        )
