@@ -1,7 +1,33 @@
 extends layout
-
-script(src='/scripts/linkstable')
-
-body
-    block content
-        table(id='links_table' data= url)
+block styles
+    link(rel='stylesheet', href='/stylesheets/datatables.min.css')
+    link(rel='stylesheet', href='/stylesheets/dataTables.editor.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/loader.css')
+block scripts
+    script(src='/javascripts/datatables.min.js')
+    script(src='/javascripts/dataTables.editor.min.js')
+    script(src='/javascripts/bootstrap.min.js')
+    script(src='/javascripts/findGroups.js')
+    script(src='/javascripts/generateLinks.js')
+    script(src='/javascripts/underscore-min.js')
+    | <script type='text/javascript'>
+    | $(document).ready(function () {
+    |     let url = $('#links_table').attr('url');
+    |     load(url);
+    | });
+    | </script>
+block content
+    div(id='loader')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='dot')
+        div(class='lading')
+    table(id='links_table' url= url)
+    button(id='download' type='button' class='download btn btn-primary' style='display: none')= 'Download'
+    button(id='preview' type='button' class='preview btn btn-primary' style='display: none')= 'Preview'

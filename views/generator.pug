@@ -1,15 +1,17 @@
 extends layout
-
-body
-    block content
-        form(action='/generator', method='POST')
-            div
-                input(
-                    type='text',
-                    name='url'
-                )
+block styles
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+block content
+    form(action='/generator', method='POST')
+        div
             input(
-                class='ui-button ui-widget ui-corner-all',
-                type='submit',
-                value='Generate'
+            class='form-control',
+            type='text',
+            name='url',
+            aria-describedby="inputGroup-sizing-default"
             )
+        input(
+        class='btn btn-primary',
+        type='submit',
+        value='Generate'
+        )
