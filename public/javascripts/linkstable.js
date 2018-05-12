@@ -19,7 +19,6 @@ const generateLinks = function (urlStr) {
     url = new URL(urlStr);
     hostname = url.hostname;
     baseUrl = url.protocol + "//" + url.hostname;
-    console.log(pagesVisited)
     return new Promise(crawl)
 };
 
@@ -56,16 +55,17 @@ function crawl(resolve) {
         console.log("resolve");
         let data = Object.values(pagesVisited);
         data.forEach(node => {
-            let relatesTo = [];
-            node.links.forEach(link => {
-                if (pagesVisited[link] !== null && pagesVisited[link] !== undefined &&
-                    pagesVisited[link].id !== undefined && !relatesTo.includes(pagesVisited[link].id)) {
-                    relatesTo.push(pagesVisited[link].id);
-                }
-            });
-            node.relatesTo = relatesTo;
-            delete node.links;
-        });
+                let relatesTo = [];
+                node.links.forEach(link => {
+                    if (pagesVisited[link] !== null && pagesVisited[link] !== undefined &&
+                        pagesVisited[link].id !== undefined && !relatesTo.includes(pagesVisited[link].id)) {
+                        relatesTo.push(pagesVisited[link].id);
+                    }
+                });
+                node.relatesTo = relatesTo;
+                delete node.links;
+            }
+        );
         resolve(data);
     }
 }
